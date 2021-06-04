@@ -50,6 +50,17 @@
     top: 20px;
 }
 
+.dataTables_length{
+    position: relative;
+    left: 7px;
+}
+
+
+.dataTables_wrapper .dataTables_info{
+    position: relative;
+    left: 6px;
+}
+
 
 
 /* Highcharts */
@@ -122,13 +133,14 @@ top: 126px;
 
 .ballon2{
     font-family: roboto;
-    font-size: 30px;
+    font-size: 20px;
     position : absolute;
     top: 700px;
     text-align:center;
     width: 100%;
     color:#000000;
     font-weight: bold;
+    background: rgba(255,255,255,0.4)
  
     
 }
@@ -196,7 +208,7 @@ z-index: 10;
 
 .dataTables_filter{
     position:relative;
-    left: -10px;
+    left: -7px;
 }
 
 

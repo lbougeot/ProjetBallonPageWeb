@@ -666,8 +666,9 @@ $(document).ready(function ()
     $("#courbes").click(menuCourbes);
     $("#tableaudonnees").click(menuTableau);
     $("#tableaudonnees").click(afficherTableau);
-
-
+    $("#formcheck").prop("checked",true);
+    $("#formcheck2").prop("checked",false);
+    $("#formcheck3").prop("checked",false);
 
     //associer les evenements click sur les boutons aux fonctions d'affichage ajax
 

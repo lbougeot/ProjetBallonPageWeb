@@ -67,7 +67,7 @@ function afficherPositionEtAltitude()
                     viewer.clock.currentTime = start.clone();
                     viewer.timeline.zoomTo(start, stop);
                     // Accelere la vitesse de lecture (x100).
-                    viewer.clock.multiplier = 100;
+                    viewer.clock.multiplier = 40;
                     // Commence à jouer la scène.
                     viewer.clock.shouldAnimate = true;
 
@@ -102,18 +102,18 @@ function afficherPositionEtAltitude()
                     // fonction permettant de charger mon modèle 3D (ballon)
                     async function chargerModele() {
                         // Charge le modèle glTF de Cesium ion grâce à un id.
-                        const airplaneUri = await Cesium.IonResource.fromAssetId(332922);
-                        const airplaneEntity = viewer.entities.add({
+                        const ballon = await Cesium.IonResource.fromAssetId(332922);
+                        const ballonEntity = viewer.entities.add({
                             availability: new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({start: start, stop: stop})]),
                             position: positionProperty,
-                            // Attach the 3D model instead of the green point.
-                            model: {uri: airplaneUri},
-                            // Automatically compute the orientation from the position.
+                            // Utilise le modèle 3D au lieu d'un point vert.
+                            model: {uri: ballon},
+                            // Calcul automatiquement l'orientation à partir de la position
                             orientation: new Cesium.VelocityOrientationProperty(positionProperty),
                             path: new Cesium.PathGraphics({width: 3})
                         });
 
-                        viewer.trackedEntity = airplaneEntity;
+                        viewer.trackedEntity = ballonEntity;
                     }
 
                     chargerModele();
@@ -150,7 +150,8 @@ function afficherCourbesPression()
 
                 $.each(data, function (index, ligne) {
 
-                    var d = new Date(ligne.date); // datetime attend un nombre de millisecondes pour cela je dois la convertir la date avec getTime
+                    // datetime attend un nombre de millisecondes pour cela je dois la convertir la date avec getTime
+                    var d = new Date(ligne.date); 
                     tabJsonAltitude[index] = [d.getTime(), ligne.altitude];
                     tabJsonPression[index] = [d.getTime(), ligne.pression];
                 });
@@ -172,7 +173,7 @@ function afficherCourbesPression()
                             type: 'datetime',
                             crosshair: true
                         }],
-                    yAxis: [{// Primary yAxis
+                    yAxis: [{// // Première Axis (yAxis)
                             labels: {
                                 format: '{value}hPa',
                                 style: {
@@ -185,7 +186,7 @@ function afficherCourbesPression()
                                     color: Highcharts.getOptions().colors[1]
                                 }
                             }
-                        }, {// Secondary yAxis
+                        }, {// Second Axis (yAxis)
                             title: {
                                 text: 'Altitude',
                                 style: {
@@ -256,7 +257,9 @@ function afficherCourbesTemperature()
             .done(function (data, textStatus, jqXHR) {
                 $.each(data, function (index, ligne) {
 
-                    var d = new Date(ligne.date); // datetime attend un nombre de millisecondes pour cela je dois la convertir la date avec getTime
+
+                    // datetime attend un nombre de millisecondes pour cela je dois la convertir la date avec getTime
+                    var d = new Date(ligne.date); 
                     tabJsonTemperature[index] = [d.getTime(), ligne.temperature];
                     tabJsonAltitude[index] = [d.getTime(), ligne.altitude];
 
@@ -277,7 +280,7 @@ function afficherCourbesTemperature()
                             type: 'datetime',
                             crosshair: true
                         }],
-                    yAxis: [{// Primary yAxis
+                    yAxis: [{// Première Axis (yAxis)
                             labels: {
                                 format: '{value}°C',
                                 style: {
@@ -290,7 +293,7 @@ function afficherCourbesTemperature()
                                     color: Highcharts.getOptions().colors[1]
                                 }
                             }
-                        }, {// Secondary yAxis
+                        }, {// Second Axis (yAxis)
                             title: {
                                 text: 'Altitude',
                                 style: {
@@ -384,7 +387,7 @@ function afficherCourbesRadiation()
                             type: 'datetime',
                             crosshair: true
                         }],
-                    yAxis: [{// Primary yAxis
+                    yAxis: [{// Première Axis (yAxis)
                             labels: {
                                 format: '{value}Cpm',
                                 style: {
@@ -397,7 +400,7 @@ function afficherCourbesRadiation()
                                     color: Highcharts.getOptions().colors[1]
                                 }
                             }
-                        }, {// Secondary yAxis
+                        }, {// Second Axis (yAxis)
                             title: {
                                 text: 'Altitude',
                                 style: {

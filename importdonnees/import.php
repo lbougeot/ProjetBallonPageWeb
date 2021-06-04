@@ -10,8 +10,9 @@ if (move_uploaded_file($_FILES['csv_file']['tmp_name'], $uploadfile)) { // uploa
         $file_data = fopen($uploadfile, 'r');
         
         
-        $requete = $bdd->prepare("insert into carteSD (horodatage,latitude,longitude,altitude,temperature,pression,radiation,humidite)"
-                        . "values(:horodatage,:latitude,:longitude,:altitude,:temperature,:pression,:radiation,:humidite);");
+$requete = $bdd->prepare("insert into carteSD (horodatage,latitude,longitude,altitude,"
+        . "temperature,pression,radiation,humidite)"
+   . "values(:horodatage,:latitude,:longitude,:altitude,:temperature,:pression,:radiation,:humidite);");
         
         $nbErreur = 0;
         $nbSuccess = 0;
